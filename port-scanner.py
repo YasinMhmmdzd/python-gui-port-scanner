@@ -20,7 +20,7 @@ class MainPortScannerWindow(QWidget):
         self.app_logo.setPixmap(logo)
         self.app_logo.move(425, 50)
         self.ip_address = QLineEdit(self)
-        self.ip_address.setPlaceholderText("آدرس ip مورد نظر را تایپ کنید...")
+        self.ip_address.setPlaceholderText("آدرس ip را وارد کنید...")
         self.ip_address.setFont(QFont("irancell" , 14))
         self.ip_address.setGeometry(650 , 190 , 300 , 45)
         self.ip_address.setStyleSheet("border:1px solid #668df7;border-radius:5px;padding:10px;")
@@ -45,10 +45,9 @@ class MainPortScannerWindow(QWidget):
         for port in range(int(self.first_range.text()) , int(self.second_range.text())):
             server = socket(AF_INET , SOCK_STREAM)
             connection = server.connect_ex((self.t_IP, port))
-            if connection == 0:
-                print('port %d: OPEN' % (port,))
-                #self.port_label.move(500 , 250)
-                server.close()
+            if(connection == 0):
+                self.msg_label = QLabel("باز است:" , self)
+                self.msg_label.move(500 , 250)
 window = MainPortScannerWindow()
 window.show()
 sys.exit(app.exec())
