@@ -39,6 +39,8 @@ class MainPortScannerWindow(QWidget):
         self.start_button = QPushButton("اسکن" , self)
         self.start_button.setGeometry(50 , 190 , 180 , 50)
         self.start_button.setStyleSheet("background-color:#0650af;color:white;border:1px solid #0650af; border-radius:5px;")
+        self.start_button.clicked.connect(self.start_scan)
+    def start_scan(self):
 window = MainPortScannerWindow()
 window.show()
 sys.exit(app.exec())
