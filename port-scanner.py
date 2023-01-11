@@ -42,11 +42,11 @@ class MainPortScannerWindow(QWidget):
         self.start_button.setStyleSheet("background-color:#0650af;color:white;border:1px solid #0650af; border-radius:5px;")
         self.start_button.clicked.connect(self.start_scan)
     def start_scan(self):
-        for port in range(int(self.first_range) , int(self.second_range)):
+        for port in range(int(self.first_range.text()) , int(self.second_range.text())):
             server = socket(AF_INET , SOCK_STREAM)
-            connection = server.connect_ex(self.t_IP, port)
+            connection = server.connect_ex((self.t_IP, port))
             if connection == 0:
-                self.port_label = QLabel(f"{port}این پورت باز است : " , self)
+                print('port %d: OPEN' % (port,))
                 self.port_label.move(500 , 250)
                 server.close()
 window = MainPortScannerWindow()
