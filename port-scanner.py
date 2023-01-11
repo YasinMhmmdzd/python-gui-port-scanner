@@ -24,7 +24,7 @@ class MainPortScannerWindow(QWidget):
         self.ip_address.setFont(QFont("irancell" , 14))
         self.ip_address.setGeometry(650 , 190 , 300 , 45)
         self.ip_address.setStyleSheet("border:1px solid #668df7;border-radius:5px;padding:10px;")
-        self.t_IP = gethostbyname(int(self.ip_address.text()))
+        self.t_IP = gethostbyname(self.ip_address.text())
         self.first_label_range = QLabel("جستجو از پورت : ", self)
         self.first_label_range.move(520 , 200)
         self.first_label_range.setFont(QFont("irancell" , 12))
@@ -44,10 +44,11 @@ class MainPortScannerWindow(QWidget):
     def start_scan(self):
         for port in range(int(self.first_range) , int(self.second_range)):
             server = socket(AF_INET , SOCK_STREAM)
-            connection = server.connect_ex((self.t_IP, port))
+            connection = server.connect_ex(self.t_IP, port)
             if connection == 0:
                 self.port_label = QLabel(f"{port}این پورت باز است : " , self)
                 self.port_label.move(500 , 250)
+                server.close()
 window = MainPortScannerWindow()
 window.show()
 sys.exit(app.exec())
