@@ -48,6 +48,7 @@ class MainPortScannerWindow(QWidget):
             if(connection == 0):
                 self.msg_label = QLabel("باز است:" , self)
                 self.msg_label.move(500 , 250)
+                server.close()
 window = MainPortScannerWindow()
 window.show()
 sys.exit(app.exec())
