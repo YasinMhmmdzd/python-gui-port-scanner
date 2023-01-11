@@ -10,6 +10,7 @@ class MainPortScannerWindow(QWidget):
         super(MainPortScannerWindow, self).__init__()
         self.setWindowTitle("پورت اسکنر")
         self.setWindowIcon(QIcon("logo.png"))
+        self.setFixedSize(1000 , 500)
 
 window = MainPortScannerWindow()
 window.show()
